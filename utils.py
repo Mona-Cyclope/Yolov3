@@ -5,11 +5,13 @@ import numpy as np
 
 __LOG = logging.getLogger(__name__)
 
-sys.path.insert(0, os.getenv("DARKNET3_PATH", "/usr/local/darknet"))
-
-global dnab
-# import utils.darknet as dnab
 import darknet as dnab
+
+ # test yolov3
+import glob
+def get_last_file(path, ext='*'):
+    list_of_files = glob.glob('%s/%s' % (path, ext))
+    return max(list_of_files, key=os.path.getctime)
 
 def detect_yolo(net, meta, inpt, version="alexeyab", score_min=0.45, score_min_class_specific=None, classes_filter=None,
                 **kwargs):
