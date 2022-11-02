@@ -1,0 +1,3 @@
+[submodule "darknet-jetson-xavier"]
+	path = darknet-jetson-xavier
+	url = https://github.com/Mona-Cyclope/darknet-jetson-xavier.git

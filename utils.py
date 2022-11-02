@@ -5,10 +5,19 @@ import numpy as np
 
 __LOG = logging.getLogger(__name__)
 
+#os.environ['PATH'] = os.path.join(os.path.dirname(__file__), "darknet") + ":" + os.environ['PATH']
+#os.environ['PYTHONPATH'] += [  os.path.join(os.path.dirname(__file__), "darknet") ]
+darknet_path = os.path.join(os.path.dirname(__file__), "darknet")
+sys.path.append(darknet_path)
+sys.path.append(os.path.join(darknet_path, "python"))
+os.environ["LD_LIBRARY_PATH"] = darknet_path + ":" + os.environ.get("LD_LIBRARY_PATH","")
+os.environ["PYTHONPATH"] = darknet_path + ":" + os.path.join(darknet_path, "python")
+
 import darknet as dnab
 
  # test yolov3
 import glob
+
 def get_last_file(path, ext='*'):
     list_of_files = glob.glob('%s/%s' % (path, ext))
     return max(list_of_files, key=os.path.getctime)
